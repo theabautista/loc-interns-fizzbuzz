@@ -2,7 +2,24 @@
 function fizzbuzz() {
     console.log("Hello, World!");
 
-    // Put your code here...
+    for (let i=0; i<101; i++) {
+
+        var f = ""
+
+        if (i/3 == 0) {
+            f += "Fizz"
+        }
+        if (i/5 == 0) {
+            f += "Buzz"
+        }
+
+        if (f == "") {
+            print(i)
+        }else{
+            print(f)
+        }
+    }
+
 
 }
 
