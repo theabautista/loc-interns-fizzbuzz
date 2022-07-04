@@ -13,10 +13,10 @@ function fizzbuzz() {
             f += "Buzz"
         }
 
-        if (f == "") {
-            print(i)
+        if (!f) {
+            console.log(i)
         }else{
-            print(f)
+            console.log(f)
         }
     }
 
