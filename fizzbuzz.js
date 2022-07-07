@@ -23,46 +23,48 @@ function fizzbuzz() {
 
 }
 
-function fizzbuzz2() {
+function fizzbuzz2(num, rules) {
     console.log("Part 2")
 
-    for (var i=1; i<144; i++) {
-        divisors = getDivisors(i)
-
+    for (var i=1; i<num; i++) {
+        
+        let idx = 0;
         var f = []
-
-        if (i%3 == 0) {
-            f.push("Fizz")
-        }
-        if (i%5 == 0) {
-            f.push("Buzz")
-        }
-        if (i%7 == 0) {
-            f.push("Bang")
-        }
-
-        if (i%11 == 0) {
-            f = ["Bong"]
-        }
-
-        if (i%13 == 0) {
-            idx = getIndexFirstB(f)
-            if (!idx) {
-                f.splice(idx,0,"Fezz")
-            }else{
-                f.push("Fezz")
+        while (idx < rules.length){
+            switch (rules[idx]) {
+                case 3:
+                    if (i%3 == 0) f.push("Fizz")
+                    break;
+                case 5: 
+                    if (i%5 == 0) f.push("Buzz")
+                    break;
+                case 7:
+                    if (i%7 == 0) f.push("Bang")
+                    break;
+                case 11:
+                    if (i%11 == 0) f = ["Bong"]
+                    break;
+                case 13: 
+                    if (i%13 == 0) {
+                        idx = getIndexFirstB(f)
+                        if (!idx) {
+                            f.splice(idx,0,"Fezz")
+                        }else{
+                            f.push("Fezz")
+                        }
+                    }
+                    break;
+                case 17:
+                    if (i%17 == 0) f.reverse()
+                    break;
             }
-        }
-
-        if (i%17 == 0){
-            f.reverse()
         }
 
         if (f.length === 0) {
             console.log(i)
         }else{
             console.log(f.join(''))
-        }
+        } 
     }
 }
 
@@ -75,8 +77,21 @@ function getIndexFirstB(f) {
 }
 
 // Now, we run the main function:
-fizzbuzz2();
-// console.log(getIndexFirstB(["Buzz"]))
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+// });
 
+// readline.question('Please enter your number and rules you\'d like to apply: ', [num, rules] => {
+//     fizzbuzz2(num, rules);
+// })
 
+const inquirer = require('inquierer')
 
+const questions = [
+    {
+        type: 'input',
+        name: 'max_num',
+        message: 'Input max range'
+    }
+]
